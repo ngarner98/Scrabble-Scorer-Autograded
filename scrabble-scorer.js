@@ -18,16 +18,16 @@ let initialWord = "";
 
 function oldScrabbleScorer(word) {
 	word = word.toUpperCase();
-	// let letterPoints = "";
-   let letterPoints = 0;
+	let letterPoints = "";
+   // let letterPoints = 0;
 
 	for (let i = 0; i < word.length; i++) {
  
 	  for (const pointValue in oldPointStructure) {
  
 		 if (oldPointStructure[pointValue].includes(word[i])) {
-			// letterPoints += `Points for '${word[i]}': ${pointValue}\n`
-         letterPoints += Number(pointValue)
+			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
+         // letterPoints += Number(pointValue)
 		 }
  
 	  }
@@ -53,21 +53,18 @@ let simpleScorer = function (word) {
 
    word = word.toUpperCase();
 
-	// let letterPoints = "";
+
    let letterPoints = 0;
 
 	for (let i = 0; i < word.length; i++) {
 
       for (const pointValue in simplePointStructure) {
          if (simplePointStructure[pointValue].includes(word[i])) {
-			   // (letterPoints) += Number(pointValue);
-            // letterPoints += `Points for '${word[i]}': ${pointValue}\n`
             letterPoints += Number(pointValue)
 		   }
       }
 
    } return letterPoints;
-   // console.log(`Your word, ${word}, is worth ${letterPoints} points.`);
 };
 
 let vowelBonusScorer = function(word) {
@@ -77,20 +74,16 @@ let vowelBonusScorer = function(word) {
       3: ['A', 'E', 'I', 'O', 'U']
    };
    word = word.toUpperCase();
-	// let letterPoints = "";
    let letterPoints = 0;
 
 	for (let i = 0; i < word.length; i++) {
 
       for (const pointValue in bonusPointStructure) {
          if (bonusPointStructure[pointValue].includes(word[i])) {
-			   // (letterPoints) += Number(pointValue);
-            // letterPoints += `Points for '${word[i]}': ${pointValue}\n`
             letterPoints += Number(pointValue)
 		   }
 		 }
 	  } return letterPoints;
-   // console.log(`Your word, ${word}, is worth ${letterPoints} points.`);
 }
 
 let scrabbleScorer = function(word) {
@@ -113,7 +106,7 @@ const scoringAlgorithms = [{
    scorerFunction: simpleScorer
 }, {
    name: "Bonus Vowels",
-   description: "Vowels are 3 pts, consonants are 1 pt.",
+   description: "Vowels are worth 3 points, consonants are worth 1 point",
    scorerFunction: vowelBonusScorer
 }, {
    name: "Scrabble",
@@ -134,7 +127,6 @@ function scorerPrompt() {
    while (userSelection < 0 || userSelection > 2) {
      userSelection = input.question(`Please enter a valid scoring algorithm: `);
    } 
-   // return console.log(scoringAlgorithms[userSelection].scoringFunction(initialWord));
    return console.log(`Your word ${initialWord} scored ${scoringAlgorithms[userSelection].scorerFunction(initialWord)} points.`);
 }
 
