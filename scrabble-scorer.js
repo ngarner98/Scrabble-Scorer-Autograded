@@ -44,27 +44,7 @@ function initialPrompt() {
 };
 
 let simpleScorer = function (word) {
-
-   const simplePointStructure = {
-      1: ['A', 'B', 'C', 'D', 'E', 'F','G',
-         'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
-         'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-   }
-
-   word = word.toUpperCase();
-
-
-   let letterPoints = 0;
-
-	for (let i = 0; i < word.length; i++) {
-
-      for (const pointValue in simplePointStructure) {
-         if (simplePointStructure[pointValue].includes(word[i])) {
-            letterPoints += Number(pointValue)
-		   }
-      }
-
-   } return letterPoints;
+    return word.length;
 };
 
 let vowelBonusScorer = function(word) {
